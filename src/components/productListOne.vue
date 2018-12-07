@@ -7,7 +7,8 @@
             <span class="price">${{product.price}}</span>
         </li>
     </ul>
-    <button v-on:click="reducePrice">Reduce Price</button>
+    <!-- can pass through parameters to mutations and actions -->
+    <button v-on:click="reducePrice(4)">Reduce Price</button>
   </div>
 </template>
 
@@ -23,7 +24,7 @@ export default {
         }
     },
     methods: {
-        reducePrice: function() {
+        reducePrice: function(amount) {
             // how it would look if we wrote function here
             // this.$store.state.products.forEach(product => {
             //     product.price -= 1;
@@ -32,7 +33,13 @@ export default {
             // instead we commit mutations in the store
             // trackable
             // parameter is whatever you called mutation in the store
-            this.$store.commit('reducePrice');
+            // this.$store.commit('reducePrice');
+
+            // best practice is to dispatch an action to the store
+            // use the action to do asynchronous code and when it's completed
+            // commit the mutation from the action
+            // helps with debugging
+            this.$store.dispatch('reducePrice', amount)
         }
     }
 }
