@@ -12,16 +12,13 @@
 
 <script>
 export default {
-    props: {
-        products: {
-            type: Array
+    // use computed property to access info in the vuex store
+    computed: {
+        products() {
+            // grab this.<access store>.<general category>.<specific category>
+            return this.$store.state.products
         }
-    },
-  data () {
-    return {
-       
     }
-  }
 }
 </script>
 
