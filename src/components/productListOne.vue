@@ -7,6 +7,7 @@
             <span class="price">${{product.price}}</span>
         </li>
     </ul>
+    <button v-on:click="reducePrice">Reduce Price</button>
   </div>
 </template>
 
@@ -19,6 +20,19 @@ export default {
         },
         saleProducts() {
             return this.$store.getters.saleProducts;
+        }
+    },
+    methods: {
+        reducePrice: function() {
+            // how it would look if we wrote function here
+            // this.$store.state.products.forEach(product => {
+            //     product.price -= 1;
+            // })
+            
+            // instead we commit mutations in the store
+            // trackable
+            // parameter is whatever you called mutation in the store
+            this.$store.commit('reducePrice');
         }
     }
 }

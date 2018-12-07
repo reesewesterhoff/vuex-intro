@@ -26,5 +26,13 @@ export const store = new Vuex.Store({
             });
             return saleProducts;
         }
+    },
+    // write mutations here, trackable
+    mutations: {
+        reducePrice: state => {
+            state.products.forEach(product => {
+                product.price -= 1;
+            })
+        }
     }
 });
