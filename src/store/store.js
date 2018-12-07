@@ -14,5 +14,17 @@ export const store = new Vuex.Store({
             {name: 'Green Shells', price: 60},
             {name: 'Red Shells', price: 80}
         ]
+    },
+    // store reusable code/calculations here, keeps code dry
+    getters: {
+        saleProducts: state => {
+            let saleProducts = state.products.map(product => {
+                return {
+                    name: '**' + product.name + '**',
+                    price: product.price/2
+                }
+            });
+            return saleProducts;
+        }
     }
 });

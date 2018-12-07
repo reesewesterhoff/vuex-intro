@@ -2,7 +2,7 @@
   <div id="product-list-two">
     <h2>Product List Two</h2>
     <ul>
-        <li v-for="product in products" :key="product.name">
+        <li v-for="product in saleProducts" :key="product.name">
             <span class="name">{{product.name}}</span>
             <span class="price">${{product.price}}</span>
         </li>
@@ -17,6 +17,10 @@ export default {
         products() {
             // grab this.<access store>.<general category>.<specific category>
             return this.$store.state.products
+        },
+        // access computation in store getters
+        saleProducts() {
+            return this.$store.getters.saleProducts;
         }
     }
 }
