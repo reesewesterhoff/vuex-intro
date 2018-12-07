@@ -13,18 +13,33 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
+
 export default {
     // see productListTwo
     computed: {
         products() {
             return this.$store.state.products
         },
-        saleProducts() {
-            return this.$store.getters.saleProducts;
-        }
+        // saleProducts() {
+        //     return this.$store.getters.saleProducts;
+        // }
+
+        // can use this and list getters in store instead of writing out
+        // every function
+        ...mapGetters([
+            'saleProducts',
+            // 'nextGetter',
+        ])
     },
     methods: {
-        reducePrice: function(amount) {
+        // can use this and list actions in store instead of writing out
+        // every function
+        ...mapActions([
+            'reducePrice'
+        ])
+        // reducePrice: function(amount) {
             // how it would look if we wrote function here
             // this.$store.state.products.forEach(product => {
             //     product.price -= 1;
@@ -39,8 +54,8 @@ export default {
             // use the action to do asynchronous code and when it's completed
             // commit the mutation from the action
             // helps with debugging
-            this.$store.dispatch('reducePrice', amount)
-        }
+            // this.$store.dispatch('reducePrice', amount);
+        // }
     }
 }
 </script>
